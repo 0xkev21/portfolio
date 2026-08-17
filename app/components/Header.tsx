@@ -2,10 +2,11 @@
 import Link from 'next/link';
 import Logo from './Logo';
 import MaxWidthWrapper from './MaxWidthWrapper';
-import { Menu, Moon } from 'react-feather';
+import { Menu, Moon, X } from 'react-feather';
 import { JetBrains_Mono } from 'next/font/google';
 import Navbar from './Navbar';
 import React from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 
 const JetBrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains-mono',
@@ -14,10 +15,13 @@ const JetBrainsMono = JetBrains_Mono({
 
 function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const headerRef = React.useRef(null);
 
   return (
     <div
-      className={`${JetBrainsMono.className} z-10 border-b border-(--color-border) py-2 text-sm fixed w-full bg-(--background)`}
+      id="main-nav-header"
+      ref={headerRef}
+      className={`${JetBrainsMono.className} z-1 border-b border-(--color-border) py-2 text-sm fixed w-full bg-(--background)`}
     >
       <MaxWidthWrapper>
         <div className="flex flex-row justify-between items-center gap-4">
@@ -30,6 +34,7 @@ function Header() {
             </Link>
           </div>
           <Navbar
+            headerRef={headerRef}
             isOpen={isOpen}
             handleClose={() => {
               setIsOpen(false);
@@ -40,12 +45,38 @@ function Header() {
               <Moon className="w-5 stroke-(--foreground)" />
             </button>
           </div>
-          <div className="sm:hidden block">
+          <div className="md:hidden block">
             <button
-              onClick={() => setIsOpen(true)}
+              onClick={() => {
+                setIsOpen(!isOpen);
+              }}
               className="border-(--color-border) border p-2 rounded-lg"
             >
-              <Menu className="w-5 stroke-(--foreground)" />
+              <AnimatePresence mode="wait" initial={false}>
+                {isOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ scaleY: 0 }}
+                    animate={{ scaleY: 1 }}
+                    exit={{ scaleY: 0 }}
+                    transition={{ duration: 0.15 }}
+                    className="dev"
+                  >
+                    <X className="w-5 stroke-(--foreground)" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ scaleY: 0 }}
+                    animate={{ scaleY: 1 }}
+                    exit={{ scaleY: 0 }}
+                    transition={{ duration: 0.15 }}
+                    className="div"
+                  >
+                    <Menu className="w-5 stroke-(--foreground)" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </button>
           </div>
         </div>

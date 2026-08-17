@@ -1,0 +1,25 @@
+---
+title: "Business Suite Voice Note"
+description: "A Chrome Web Store extension that injects push-to-talk functionality into Meta Business Suite."
+tech: ["JavaScript", "Chrome Extension API", "MediaRecorder API"]
+github: "https://github.com/yourusername/bs-voice-note"
+live: "https://chromewebstore.google.com/detail/..."
+---
+
+Customer support workflows in Meta Business Suite are bottlenecked by text-only input. To solve this, I engineered a browser extension that injects native push-to-talk functionality directly into the DOM.
+
+<AudioVisualizerDemo 
+  message="Click to test the MediaRecorder API implementation" 
+/>
+
+## Navigating the Review Process
+Building the extension was only half the battle. Navigating the Chrome Web Store review process proved challenging, particularly when dealing with strict `manifest.json` permissions. 
+
+I hit a complex rejection notice regarding content security policies. 
+
+<BeforeAfterCode 
+  beforeTitle="Rejected Manifest" 
+  afterTitle="Approved Manifest (v1.2)"
+/>
+
+By isolating the DOM manipulation scripts and properly scoping the audio recording permissions, I successfully resolved the rejection. Today, the extension is actively speeding up workflows for over 188 users.

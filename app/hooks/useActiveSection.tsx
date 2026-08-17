@@ -15,7 +15,7 @@ function useActiveSection(sectionIds: string[]) {
           }
         }
       })
-    }, {rootMargin: '-50% 0px'});
+    }, {rootMargin: '-40% 0px -59% 0px'});
 
     sectionIds.forEach(sectionId => {
       const element = document.querySelector(sectionId);

@@ -1,50 +1,56 @@
 import Hero from '../components/Hero';
+import MaxWidthWrapper from '../components/MaxWidthWrapper';
+import MileStones from '../components/MileStones';
 import Section from '../components/Section';
 
 const HomePage = () => {
   return (
     <main>
       <Hero />
-      <Section
-        sectionNumber="01"
-        title="Featured Projects"
-        description="A selection of things I've designed, built, and shipped."
-        id="projects"
-      >
-        Projects
-      </Section>
-      <Section
-        sectionNumber="02"
-        title="academics"
-        description="A selection of things I've designed, built, and shipped."
-        id="academics"
-      >
-        Academics
-      </Section>
-      <Section
-        sectionNumber="03"
-        title="learning"
-        description="A selection of things I've designed, built, and shipped."
-        id="learning"
-      >
-        Learning
-      </Section>
-      <Section
-        sectionNumber="04"
-        title="skills"
-        description="A selection of things I've designed, built, and shipped."
-        id="skills"
-      >
-        Skills
-      </Section>
-      <Section
-        sectionNumber="05"
-        title="resume"
-        description="A selection of things I've designed, built, and shipped."
-        id="resume"
-      >
-        Resume
-      </Section>
+      <MaxWidthWrapper>
+        <Section
+          sectionNumber="01"
+          title="Featured Projects"
+          description="A selection of things I've designed, built, and shipped."
+          id="projects"
+        >
+          Projects
+        </Section>
+        <div className="max-w-200 m-auto">
+          <Section
+            sectionNumber="02"
+            title="Academics"
+            description="A non-linear route into engineering, marked by certifications and global rankings."
+            id="academics"
+          >
+            <MileStones />
+          </Section>
+        </div>
+        <Section
+          sectionNumber="03"
+          title="Learning"
+          description="Self-paced deep dives. Tap a story to see exactly what was mastered."
+          id="learning"
+        >
+          ok
+        </Section>
+        <Section
+          sectionNumber="04"
+          title="Skills"
+          description="The tools I reach for across the stack and the terminal."
+          id="skills"
+        >
+          Skills
+        </Section>
+        <Section
+          sectionNumber="05"
+          title="Request the Resume"
+          description="Drop your details and the full resume is delivered automatically — no back and forth."
+          id="resume"
+        >
+          Resume
+        </Section>
+      </MaxWidthWrapper>
     </main>
   );
 };

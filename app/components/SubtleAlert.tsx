@@ -17,7 +17,7 @@ const SubtleAlert = ({ children }) => {
           transition={{
             repeat: Infinity,
             duration: 0.8,
-            repeatDelay: 1,
+            repeatDelay: 0.3,
           }}
           initial={{
             scale: 0,
@@ -30,7 +30,7 @@ const SubtleAlert = ({ children }) => {
           className="absolute w-full h-full rounded-full bg-(--color-primary)"
         />
 
-        <span className="relative z-1 w-3 h-3 rounded-full bg-(--color-primary)" />
+        <span className="relative w-3 h-3 rounded-full bg-(--color-primary)" />
       </div>
 
       {children}

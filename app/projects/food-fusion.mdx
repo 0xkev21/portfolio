@@ -1,0 +1,36 @@
+---
+title: "FoodFusion"
+description: "A full-stack, server-rendered culinary platform engineered purely with PHP and MySQL."
+tech: ["PHP", "MySQL", "Vanilla JavaScript"]
+github: "https://github.com/yourusername/foodfusion"
+live: "https://foodfusion-demo.com"
+---
+
+While modern JavaScript frameworks are powerful, I wanted to build a comprehensive system from scratch without abstracting the logic behind tools like React or Laravel. FoodFusion is a return to core web fundamentals.
+
+## The Architecture: Pure Server-Side Rendering
+FoodFusion is built entirely on a pure PHP architecture. It handles routing, business logic, user authentication, and dynamic HTML generation directly on the server. The data layer is powered by a relational MySQL database, ensuring strict data integrity for recipes, users, and reviews.
+
+<ArchitectureDiagram 
+  client="Browser" 
+  server="Apache / PHP" 
+  database="MySQL" 
+/>
+
+## The Crucible: Security & Data Flow
+When you don't use a framework, you are entirely responsible for your own security. The biggest technical challenge was engineering a secure data pipeline. 
+
+I had to manually implement session management and secure the database against vulnerabilities. 
+
+<CodeBlock language="php" title="Secure PDO Implementation">
+{`// Example of strict prepared statements to prevent SQL injection
+$stmt = $pdo->prepare('SELECT * FROM users WHERE email = :email LIMIT 1');
+$stmt->execute(['email' => $sanitized_email]);
+$user = $stmt->fetch();
+`}
+</CodeBlock>
+
+By strictly enforcing PDO prepared statements, sanitizing all user inputs against XSS, and managing secure HTTP-only cookies for sessions, I ensured the application is robust and production-safe. 
+
+## The Outcome
+FoodFusion is a fast, lightweight, and highly secure web application. Building this solidified my fundamental understanding of the HTTP request lifecycle, server-side data flow, and raw relational database management.
