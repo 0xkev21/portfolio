@@ -1,3 +1,4 @@
+import CertStories from '../components/CertStories';
 import Hero from '../components/Hero';
 import MaxWidthWrapper from '../components/MaxWidthWrapper';
 import MileStones from '../components/MileStones';
@@ -16,7 +17,7 @@ const HomePage = () => {
         >
           Projects
         </Section>
-        <div className="max-w-200 m-auto">
+        <div className="max-w-220 m-auto">
           <Section
             sectionNumber="02"
             title="Academics"
@@ -32,7 +33,7 @@ const HomePage = () => {
           description="Self-paced deep dives. Tap a story to see exactly what was mastered."
           id="learning"
         >
-          ok
+          <CertStories />
         </Section>
         <Section
           sectionNumber="04"

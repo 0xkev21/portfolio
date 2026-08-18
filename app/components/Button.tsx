@@ -18,12 +18,12 @@ const Button = ({
     className = 'text-(--foreground) border-3 border-(--color-border)';
   }
   return (
-    <Tag
-      href={href}
-      className={`text-sm md:text-md flex gap-2 items-center justify-center px-4 sm:px-6 py-2 rounded-lg ${className}`}
-      {...delegated}
-    >
-      {children}
+    <Tag href={href} className="block" {...delegated}>
+      <div
+        className={`w-full text-sm md:text-md flex gap-2 items-center justify-center px-4 sm:px-6 py-2 rounded-lg ${className}`}
+      >
+        {children}
+      </div>
     </Tag>
   );
 };

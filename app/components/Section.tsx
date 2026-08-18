@@ -22,7 +22,7 @@ const Section = ({
 }) => {
   return (
     <section
-      className="gap-4 flex flex-col py-[clamp(7rem,12vw,12rem)]"
+      className="gap-4 flex flex-col py-[clamp(5rem,12vw,12rem)]"
       id={id}
       {...delegated}
     >
@@ -31,7 +31,7 @@ const Section = ({
       >
         {sectionNumber} <span className="w-8 h-0.5 bg-(--color-primary)" />
       </div>
-      <h2 className="text-[clamp(1.25rem,3vw,2.5rem)] font-semibold">
+      <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-bold">
         {title}
       </h2>
       <p>{description}</p>

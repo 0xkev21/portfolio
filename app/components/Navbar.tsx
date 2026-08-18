@@ -47,7 +47,6 @@ function Navbar({
       <nav className="self-center md:block hidden">
         <ul className="flex flex-1 flex-row gap-2">
           {Object.entries(navLinks).map(([key, value]) => {
-            console.log(activeSection);
             const isActive = value === activeSection;
             const isCTA = key === CTA;
             return (
@@ -78,6 +77,7 @@ function Navbar({
         open={isOpen}
         persistentElements={[() => headerRef.current]}
         present={true}
+        onEscapeKeyDown={handleClose}
       >
         <Portal>
           <AnimatePresence>
@@ -111,7 +111,6 @@ function Navbar({
                   <nav>
                     <ul className="flex flex-col gap-8">
                       {Object.entries(navLinks).map(([key, value]) => {
-                        console.log(activeSection);
                         const isActive = value === activeSection;
                         const isCTA = key === CTA;
                         return (
