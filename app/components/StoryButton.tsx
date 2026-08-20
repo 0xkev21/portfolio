@@ -17,7 +17,7 @@ type StoryButtonProps = ComingSoonProps | ActiveStoryProps;
 const StoryButton = (props: StoryButtonProps) => {
   if (props.isComing) {
     return (
-      <div className="w-24 md:w-28 flex flex-col items-center gap-2 cursor-pointer">
+      <div className="flex-1 w-24 md:w-28 flex-col items-center gap-2 cursor-pointer">
         <div className="text-3xl text-(--color-border) flex items-center justify-center border-2 border-(--color-border) rounded-full w-24 h-24">
           +
         </div>
@@ -33,7 +33,7 @@ const StoryButton = (props: StoryButtonProps) => {
   return (
     <button
       onClick={handleClick}
-      className="flex-1 md:w-28 w-24 flex flex-col items-center gap-2 cursor-pointer"
+      className="flex-1 md:w-28 w-24 flex-col items-center gap-2 cursor-pointer"
     >
       <div className="relative border-2 border-(--color-primary) rounded-full overflow-clip w-24 h-24">
         <Image

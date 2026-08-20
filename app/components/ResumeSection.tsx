@@ -1,7 +1,7 @@
 import { JetBrains_Mono } from 'next/font/google';
 import { CheckCircle, Mail } from 'react-feather';
 
-const JetBrainsMono = JetBrains_Mono();
+const JetBrainsMono = JetBrains_Mono({ subsets: ['latin'] });
 
 const ResumeSection = ({ ...delegated }) => {
   return (

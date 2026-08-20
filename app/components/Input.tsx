@@ -1,6 +1,6 @@
 import { JetBrains_Mono } from 'next/font/google';
 
-const JetBrainsMono = JetBrains_Mono();
+const JetBrainsMono = JetBrains_Mono({ subsets: ['latin'] });
 
 const Input = ({ label, as = 'input', placeholder, htmlType }) => {
   const Tag = as;

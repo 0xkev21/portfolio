@@ -4,7 +4,7 @@ import Timestamp from './Timestamp';
 import { Facebook, GitHub, Linkedin } from 'react-feather';
 import Link from 'next/link';
 
-const JetBrainsMono = JetBrains_Mono();
+const JetBrainsMono = JetBrains_Mono({ subsets: ['latin'] });
 
 const Footer = () => {
   return (

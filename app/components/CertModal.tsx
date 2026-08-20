@@ -1,4 +1,5 @@
-import { continuousLearning, ContinuousLearningCert } from '@/lib/data';
+'use client';
+import { ContinuousLearningCert } from '@/lib/data';
 import { Dialog } from '@ark-ui/react/dialog';
 import { Portal } from '@ark-ui/react/portal';
 import { ArrowUp, Check, GitHub, Heart, X } from 'react-feather';

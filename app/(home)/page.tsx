@@ -56,7 +56,7 @@ const HomePage = () => {
             >
               <ResumeSection />
             </Section>
-            <ResumeForm className="flex-1 min-w-100" />
+            <ResumeForm className="flex-1 min-w-80" />
           </div>
         </main>
       </MaxWidthWrapper>
