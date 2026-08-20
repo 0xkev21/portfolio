@@ -4,6 +4,13 @@ import StoryButton from './StoryButton';
 import ScrollHint from './ScrollHint';
 import React from 'react';
 import CertModal from './CertModal';
+import {
+  initial,
+  transition,
+  viewport,
+  whileInView,
+} from '@/lib/animation-settings';
+import { motion } from 'motion/react';
 
 const CertStories = () => {
   const [selectedCert, setSelectedCert] =
@@ -17,23 +24,42 @@ const CertStories = () => {
     <>
       <div className="flex flex-col gap-4">
         <div className="flex overflow-x-auto py-6 gap-4 scrollbar-none">
-          {continuousLearning.map((cert: ContinuousLearningCert) => {
+          {continuousLearning.map((cert: ContinuousLearningCert, index) => {
             const { id, title, imagePath, issuer } = cert;
             return (
-              <StoryButton
+              <motion.div
                 key={id}
-                title={title}
-                issuer={issuer}
-                imagePath={imagePath}
-                handleClick={() => {
-                  setSelectedCert(cert);
-                }}
-              />
+                transition={{ ...transition, delay: index * 0.1 }}
+                whileInView={whileInView}
+                initial={initial}
+                viewport={viewport}
+              >
+                <StoryButton
+                  title={title}
+                  issuer={issuer}
+                  imagePath={imagePath}
+                  handleClick={() => {
+                    setSelectedCert(cert);
+                  }}
+                />
+              </motion.div>
             );
           })}
-          <StoryButton isComing={true} />
+          <motion.div
+            transition={{
+              ...transition,
+              delay: continuousLearning.length * 0.1,
+            }}
+            whileInView={whileInView} 
+            initial={initial}
+            viewport={viewport}
+          >
+            <StoryButton isComing={true} />
+          </motion.div>
         </div>
-        <ScrollHint className="self-end lg:hidden" to="left" />
+        <ScrollHint className="self-end lg:hidden" to="left">
+          swipe
+        </ScrollHint>
       </div>
       <CertModal
         cert={selectedCert}

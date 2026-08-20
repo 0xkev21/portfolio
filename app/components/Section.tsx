@@ -15,26 +15,22 @@ const Section = ({
   ...delegated
 }: {
   children: any;
-  id: string;
+  id?: string;
   sectionNumber: string;
   title: string;
   description: string;
 }) => {
   return (
-    <section
-      className="gap-4 flex flex-col py-[clamp(5rem,12vw,12rem)]"
-      id={id}
-      {...delegated}
-    >
-      <div
-        className={`${JetBrainsMono.className} flex gap-2 items-center text-(--color-primary) font-bold`}
-      >
-        {sectionNumber} <span className="w-8 h-0.5 bg-(--color-primary)" />
+    <section className="gap-4 flex flex-col py-[clamp(4rem,6vw,7rem)]" id={id}>
+      <div {...delegated}>
+        <div
+          className={`${JetBrainsMono.className} flex gap-2 items-center text-(--color-primary) font-bold`}
+        >
+          {sectionNumber} <span className="w-8 h-0.5 bg-(--color-primary)" />
+        </div>
+        <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-bold">{title}</h2>
+        <p>{description}</p>
       </div>
-      <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-bold">
-        {title}
-      </h2>
-      <p>{description}</p>
       {children}
     </section>
   );

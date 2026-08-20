@@ -15,7 +15,7 @@ const AnimateMap = {
   left: { rotate: '-rotate-90', animate: { x: -4 } },
 };
 
-const ScrollHint = ({ to, ...delegated }: { to: string }) => {
+const ScrollHint = ({ to, children, ...delegated }: { to: string }) => {
   return (
     <div {...delegated}>
       <div className={`${JetBrainsMono.className} flex gap-2 items-start`}>
@@ -32,7 +32,7 @@ const ScrollHint = ({ to, ...delegated }: { to: string }) => {
         >
           <ArrowUp size={14} className={AnimateMap[to]['rotate']} />
         </motion.div>
-        scroll
+        {children}
       </div>
     </div>
   );

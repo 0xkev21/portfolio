@@ -60,7 +60,7 @@ const CertModal = ({
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95, y: 20 }}
                       transition={{ duration: 0.4 }}
-                      className="z-3 md:h-10/11 border rounded-lg border-(--color-border) md:max-w-180 inset-0 m-auto fixed flex flex-col w-full h-full bg-(--background) overflow-hidden"
+                      className="z-3 md:h-10/11 border rounded-2xl border-(--color-border) md:max-w-180 inset-0 m-auto fixed flex flex-col w-full h-full bg-(--background) overflow-hidden"
                     >
                       <div className="w-full shrink-0 px-5 flex py-3 justify-between items-center border-b border-(--color-border) bg-(--background)">
                         <Dialog.Title className="font-semibold text-(--color-primary) ">
@@ -112,9 +112,11 @@ const CertModal = ({
                             {skills.map((skill) => (
                               <div
                                 key={skill}
-                                className="border border-(--color-primary) flex gap-2 px-3 py-2 bg-(--color-primary-subtle) text-(--foreground) text-sm rounded-lg"
+                                className="border border-(--color-primary) flex items-start gap-2 px-3 py-2 bg-(--color-primary-subtle) text-(--foreground) text-sm rounded-lg"
                               >
-                                <Check size={14} />
+                                <div className="flex items-center">
+                                  <Check size={16} />
+                                </div>
                                 <span>{skill}</span>
                               </div>
                             ))}

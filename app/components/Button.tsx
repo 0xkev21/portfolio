@@ -20,7 +20,7 @@ const Button = ({
   return (
     <Tag href={href} className="block" {...delegated}>
       <div
-        className={`w-full text-sm md:text-md flex gap-2 items-center justify-center px-4 sm:px-6 py-2 rounded-lg ${className}`}
+        className={`w-full text-sm font-semibold md:text-md flex gap-2 items-center justify-center px-4 sm:px-6 py-3 rounded-lg ${className}`}
       >
         {children}
       </div>

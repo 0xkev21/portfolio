@@ -1,18 +1,27 @@
+'use client';
 import MaxWidthWrapper from './MaxWidthWrapper';
 import SubtleAlert from './SubtleAlert';
 import Button from './Button';
 import Image from 'next/image';
 import { ArrowUp, Briefcase, FileText } from 'react-feather';
 import ScrollHint from './ScrollHint';
+import { motion } from 'motion/react';
+import { animate, initial, transition, viewport, whileInView } from '@/lib/animation-settings';
 
 const Hero = () => {
   return (
-    <MaxWidthWrapper>
+    <div>
       <section
         id="about"
-        className="mt-5 flex flex-col md:flex-row py-[clamp(4rem,10vw,8rem)] min-h-10/12 gap-8 items-center"
+        className="mt-5 flex flex-col md:flex-row py-[clamp(4rem,10vw,6rem)] min-h-screen gap-8 items-center overflow-hidden"
       >
-        <div className="flex flex-col items-start gap-6 max-w-xl">
+        <motion.div
+          initial={initial}
+          whileInView={whileInView}
+          transition={transition}
+          viewport={viewport}
+          className="flex flex-col items-start gap-6 max-w-xl"
+        >
           <SubtleAlert>available for opportunities</SubtleAlert>
           <h1 className="text-[clamp(2rem,5vw,4rem)] font-bold">
             Hi, I'm Kev. <br />
@@ -36,20 +45,28 @@ const Hero = () => {
               Request Resume
             </Button>
           </div>
-        </div>
-        <div className="w-full aspect-square md:w-96 md:h-96 border-4 border-dotted bg-(--color-primary-subtle) border-(--color-primary)  rounded-2xl rotate-2">
+        </motion.div>
+        <motion.div
+          initial={initial}
+          whileInView={whileInView}
+          transition={transition}
+          viewport={viewport}
+          className="w-full aspect-square md:w-96 md:h-96 border-4 border-dotted bg-(--color-primary-subtle) border-(--color-primary)  rounded-2xl rotate-2"
+        >
           <div className="w-full m-2 h-full border-4 border-dotted border-(--foreground) -rotate-2 rounded-2xl overflow-hidden">
             <Image
               className="object-cover object-bottom saturate-85 contrast-100"
               alt="profile-picture"
               fill
-              src="/profile.webp"
+              src="/profile.jpeg"
             />
           </div>
-        </div>
+        </motion.div>
       </section>
-      <ScrollHint to="top" className="hidden md:block -mt-16" />
-    </MaxWidthWrapper>
+      <ScrollHint to="top" className="hidden md:block -mt-16">
+        scroll
+      </ScrollHint>
+    </div>
   );
 };
 
