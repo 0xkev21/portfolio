@@ -13,12 +13,12 @@ const JetBrainsMono = JetBrains_Mono({
 });
 
 const navLinks = {
-  About: '#about',
-  Projects: '#projects',
-  Academics: '#academics',
-  Learning: '#learning',
-  Skills: '#skills',
-  Resume: '#resume',
+  About: '/#about',
+  Projects: '/#projects',
+  Academics: '/#academics',
+  Learning: '/#learning',
+  Skills: '/#skills',
+  Resume: '/#resume',
 };
 
 const CTA = 'Resume';
@@ -30,6 +30,7 @@ function Navbar({
 }: {
   isOpen: boolean;
   handleClose: () => void;
+  headerRef: any;
 }) {
   const id = React.useId();
 

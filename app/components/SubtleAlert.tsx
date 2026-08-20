@@ -1,13 +1,14 @@
 'use client';
 import { motion } from 'motion/react';
 import { JetBrains_Mono } from 'next/font/google';
+import { ReactNode } from 'react';
 
 const JetBrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains-mono',
   subsets: ['latin'],
 });
 
-const SubtleAlert = ({ children }) => {
+const SubtleAlert = ({ children }: {children: ReactNode}) => {
   return (
     <div
       className={`${JetBrainsMono.className} inline-flex gap-3 px-4 py-2 items-center border border-(--color-border) rounded-full text-xs`}

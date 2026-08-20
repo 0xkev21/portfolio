@@ -4,25 +4,30 @@ description: "Architecting a highly scalable property marketplace with a normali
 tech: ["React", "PHP", "MySQL"]
 github: "https://github.com/yourusername/estatehub"
 live: "https://estatehub-demo.com"
+imagePath: "/projects/estate-hub.jpg"
 ---
 
-When building EstateHub as a capstone project, I wanted to step away from basic CRUD applications and build a system that mirrored enterprise-level relational complexity.
+When building EstateHub as a capstone project,
+I wanted to step away from basic CRUD applications and build a system that mirrored enterprise-level relational complexity.
 
 ## The Architecture: Mapping 18 Tables
-The backbone of the application is a deeply normalized MySQL database. Handling user authentication, role-based access, property listings, and nested membership tiers required strict adherence to normalization principles to prevent data anomalies.
+The backbone of the application is a deeply normalized MySQL database.
+Handling user authentication, role-based access, property listings, and nested membership tiers required strict adherence to normalization principles to prevent data anomalies.
 
-<DatabaseSchemaViewer 
+{/* <DatabaseSchemaViewer 
   tables={['Users', 'Memberships', 'Properties', 'Transactions']} 
   interactive={true} 
-/>
+/> */}
 
 ## Building the REST Pipeline
 The React frontend communicates with the PHP backend through a custom RESTful API. 
 
-<ApiRequestVisualizer 
+{/* <ApiRequestVisualizer 
   endpoint="/api/v1/properties" 
   method="GET" 
   responseType="JSON" 
-/>
+/> */}
 
-By designing the schema carefully, complex queries involving multiple table joins resolve in milliseconds, ensuring the UI remains highly responsive regardless of how deep the property relations go.
+By designing the schema carefully,
+complex queries involving multiple table joins resolve in milliseconds,
+ensuring the UI remains highly responsive regardless of how deep the property relations go.

@@ -1,5 +1,4 @@
 import CertStories from '../components/CertStories';
-import Footer from '../components/Footer';
 import Hero from '../components/Hero';
 import MaxWidthWrapper from '../components/MaxWidthWrapper';
 import MileStones from '../components/MileStones';
@@ -60,7 +59,6 @@ const HomePage = () => {
           </div>
         </main>
       </MaxWidthWrapper>
-      <Footer />
     </>
   );
 };

@@ -8,6 +8,8 @@ import {
 } from 'next/font/google';
 import './globals.css';
 import { MotionConfig } from 'motion/react';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 const IBMPlexSans = IBM_Plex_Sans({
   variable: '--font-ibm-plex-sans',
@@ -28,7 +30,11 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={`${IBMPlexSans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <MotionConfig reducedMotion="user">{children}</MotionConfig>
+        <MotionConfig reducedMotion="user">
+          <Header />
+          <div className="mt-12">{children}</div>
+          <Footer />
+        </MotionConfig>
       </body>
     </html>
   );

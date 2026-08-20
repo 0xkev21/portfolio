@@ -2,22 +2,41 @@
 import { motion } from 'motion/react';
 import { ArrowUp } from 'react-feather';
 import { JetBrains_Mono } from 'next/font/google';
+import { ReactNode } from 'react';
 
 const JetBrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains-mono',
   subsets: ['latin'],
 });
 
-const AnimateMap = {
+type Direction = 'top' | 'right' | 'bottom' | 'left';
+
+type AnimationConfig = {
+  rotate?: string;
+  animate: {
+    x?: number;
+    y?: number;
+  };
+};
+
+const AnimateMap: Record<Direction, AnimationConfig> = {
   top: { animate: { y: 4 } },
   right: { rotate: 'rotate-90', animate: { x: 4 } },
-  bottom: { rotate: 'rotate-180', animte: { y: -4 } },
+  bottom: { rotate: 'rotate-180', animate: { y: -4 } },
   left: { rotate: '-rotate-90', animate: { x: -4 } },
 };
 
-const ScrollHint = ({ to, children, ...delegated }: { to: string }) => {
+const ScrollHint = ({
+  to,
+  children,
+  className,
+}: {
+  to: 'top' | 'right' | 'bottom' | 'left';
+  children: ReactNode;
+  className: string;
+}) => {
   return (
-    <div {...delegated}>
+    <div className={className}>
       <div className={`${JetBrainsMono.className} flex gap-2 items-start`}>
         <motion.div
           transition={{

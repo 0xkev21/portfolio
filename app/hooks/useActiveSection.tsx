@@ -1,41 +1,50 @@
-'use client'
-import React from 'react'
+'use client';
+import React from 'react';
+import { usePathname } from 'next/navigation'; // 1. Import usePathname
 
 function useActiveSection(sectionIds: string[]) {
-  const [activeSection, setActiveSection] = React.useState('#about');
+  const pathname = usePathname();
+  
+  const [activeSection, setActiveSection] = React.useState(
+    pathname === '/' ? '/#about' : ''
+  );
+
   React.useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const newHash = '#' + entry.target.id;
-          setActiveSection(newHash);
-
-          if(window.location.hash !== newHash) {
-            window.history.replaceState(null, '', newHash);
-          }
-        }
-      })
-    }, {rootMargin: '-40% 0px -59% 0px'});
-
-    sectionIds.forEach(sectionId => {
-      const element = document.querySelector(sectionId);
-      if(element) {
-        observer.observe(element);
-      }
-    })
-
-    return () => {
-      sectionIds.forEach(sectionId => {
-        const element = document.querySelector(sectionId);
-        if(element) {
-          observer.unobserve(element);
-        }
-      });
-      observer.disconnect();
+    if (pathname !== '/') {
+      setActiveSection('');
+      return;
     }
 
-  }, [])
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const newActiveState = '/#' + entry.target.id;
+            setActiveSection(newActiveState);
+
+            const browserHash = '#' + entry.target.id;
+            if (window.location.hash !== browserHash) {
+              window.history.replaceState(null, '', browserHash);
+            }
+          }
+        });
+      },
+      { rootMargin: '-40% 0px -59% 0px' },
+    );
+
+    sectionIds.forEach((sectionId) => {
+      const element = document.querySelector(sectionId.replace('/', ''));
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [pathname, sectionIds]);
+
   return activeSection;
 }
 
-export default useActiveSection
+export default useActiveSection;

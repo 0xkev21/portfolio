@@ -15,12 +15,12 @@ const ResumeForm = ({ ...delegated }) => {
     >
       <form className="flex flex-col gap-6 px-6 -mt-8 md:mt-12 py-8 border-2 border-(--color-border) rounded-xl">
         <Input
-          htmlType="text"
+          type="text"
           placeholder="Michael's Lab"
           label="Name or Company Name"
         />
-        <Input htmlType="email" placeholder="mail@michael.com" label="Email" />
-        <Button className="h-8" type="primary">
+        <Input type="email" placeholder="mail@michael.com" label="Email" />
+        <Button className="flex-1" type="primary">
           <Send size={16} />
           Request Resume (Automated Delivery)
         </Button>

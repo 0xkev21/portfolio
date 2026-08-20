@@ -29,7 +29,7 @@ const Hero = () => {
     <div>
       <section
         id="about"
-        className="mt-5 flex flex-col md:flex-row py-[clamp(4rem,10vw,6rem)] min-h-screen gap-8 md:items-center overflow-hidden"
+        className="flex flex-col md:flex-row py-[clamp(4rem,8vw,5rem)] min-h-[90vh] gap-8 md:items-center"
       >
         <motion.div
           initial={initial}
@@ -67,7 +67,7 @@ const Hero = () => {
           whileInView={whileInView}
           transition={transition}
           viewport={viewport}
-          className="w-14/15 ml-4 aspect-square md:w-96 md:h-96 border-4 border-dotted bg-(--color-primary-subtle) border-(--color-primary)  rounded-2xl rotate-2"
+          className="w-14/15 md:ml-0 ml-2 aspect-square md:w-96 md:h-96 border-4 border-dotted bg-(--color-primary-subtle) border-(--color-primary)  rounded-2xl rotate-2"
         >
           <div
             className={`${JetBrainsMono.className} -rotate-2 absolute gap-2 inset-0 m-auto p-6 flex flex-col items-center justify-center`}

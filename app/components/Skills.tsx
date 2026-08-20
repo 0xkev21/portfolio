@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { skills } from '@/lib/data';
 import { Layers, Server, Terminal } from 'react-feather';
 import { motion } from 'motion/react';
@@ -19,7 +19,8 @@ const Skills = () => {
   return (
     <div className="py-6 flex flex-col sm:flex-row gap-4">
       {skills.map(({ category, skills }, index) => {
-        const Icon = IconMap[category];
+        const categoryKey = category as keyof typeof IconMap;
+        const Icon = IconMap[categoryKey];
         return (
           <motion.article
             transition={{ ...transition, delay: index * 0.1 }}

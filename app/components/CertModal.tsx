@@ -150,7 +150,7 @@ const CertModal = ({
                             </Button>
                           )}
                         </div>
-                        <Button type="secondary">
+                        <Button type="secondary" onClick={() => {}} >
                           <Heart />
                         </Button>
                       </div>

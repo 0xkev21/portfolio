@@ -1,30 +1,54 @@
 import Link from 'next/link';
+import { ComponentPropsWithoutRef, ReactNode } from 'react';
 
-const Button = ({
-  type,
-  children,
-  isLinkBtn,
-  href,
-  ...delegated
-}: {
-  type: 'primary' | 'secondary';
-  isLinkBtn: boolean;
+type LinkBtn = {
+  type?: 'primary' | 'secondary';
+  children: ReactNode;
+  isLinkBtn: true;
   href: string;
-  children: any;
-}) => {
-  const Tag = isLinkBtn ? Link : 'button';
-  let className = 'bg-(--color-primary) text-(--background)';
+  className?: string;
+} & Omit<ComponentPropsWithoutRef<typeof Link>, 'type' | 'href'>;
+
+type Btn = {
+  type?: 'primary' | 'secondary';
+  children: ReactNode;
+  isLinkBtn?: false;
+  href?: never;
+  className?: string;
+} & Omit<ComponentPropsWithoutRef<'button'>, 'type'>;
+
+type ButtonProps = LinkBtn | Btn;
+
+const Button = (props: ButtonProps) => {
+  const { type = 'primary', children, className = '' } = props;
+
+  let classNameBtn = 'bg-(--color-primary) text-(--background)';
   if (type === 'secondary') {
-    className = 'text-(--foreground) border-3 border-(--color-border)';
+    classNameBtn = 'text-(--foreground) border-3 border-(--color-border)';
   }
+
+  const innerContent = (
+    <div
+      className={`h-full w-full text-xs md:text-sm font-semibold flex gap-2 items-center justify-center px-4 sm:px-6 py-3 rounded-lg ${classNameBtn}`}
+    >
+      {children}
+    </div>
+  );
+
+  if (props.isLinkBtn) {
+    const { isLinkBtn, type, className, ...rest } = props;
+    return (
+      <Link className={`${className} block`} {...rest}>
+        {innerContent}
+      </Link>
+    );
+  }
+
+  const { isLinkBtn, type: _t, href, className: _c, ...rest } = props;
   return (
-    <Tag href={href} className="block" {...delegated}>
-      <div
-        className={`w-full text-xs font-semibold md:text-md flex gap-2 items-center justify-center px-4 sm:px-6 py-3 rounded-lg ${className}`}
-      >
-        {children}
-      </div>
-    </Tag>
+    <button className={`${className} block`} {...rest}>
+      {innerContent}
+    </button>
   );
 };
 
