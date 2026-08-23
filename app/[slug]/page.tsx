@@ -2,10 +2,10 @@ import { MDXRemote } from 'next-mdx-remote-client/rsc';
 import { getProject, getProjectList } from '@/lib/file-helpers';
 import { notFound } from 'next/navigation';
 import MaxWidthWrapper from '../components/MaxWidthWrapper';
-import Link from 'next/link';
 import { JetBrains_Mono } from 'next/font/google';
 import { ArrowUp, GitHub } from 'react-feather';
 import Button from '../components/Button';
+import Image from 'next/image';
 
 export async function generateStaticParams() {
   const projects = await getProjectList();
@@ -52,7 +52,7 @@ const ProjectPage = async ({ params }: { params: { slug: string } }) => {
     return (
       <MaxWidthWrapper>
         <article className="max-w-3xl text-pretty m-auto grid gap-6 py-[clamp(4rem,10vw,6rem)]">
-          <header className="grid gap-2">
+          <header className="grid gap-4">
             <h1 className="text-3xl md:text-5xl font-bold mb-2">
               {frontmatter.title}
             </h1>
@@ -63,7 +63,7 @@ const ProjectPage = async ({ params }: { params: { slug: string } }) => {
               {frontmatter.tech.map((tech: string, index: number) => {
                 return (
                   <li
-                    className="p-2 bg-(--foreground)/20 rounded-lg"
+                    className="p-2 border-(--color-border) border bg-(--foreground)/3 rounded-lg"
                     key={index}
                   >
                     {tech}
@@ -71,6 +71,16 @@ const ProjectPage = async ({ params }: { params: { slug: string } }) => {
                 );
               })}
             </ul>
+            <div className="w-full">
+              <Image
+                src={frontmatter.imagePath}
+                alt={frontmatter.title}
+                width={0}
+                height={0}
+                sizes="100vw"
+                className="w-full h-auto"
+              />
+            </div>
           </header>
           <div
             className={`${tailwindProses} max-w-none prose text-md text-(--foreground)`}

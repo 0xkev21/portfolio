@@ -20,6 +20,14 @@ export const getProjectList = async () => {
   return projects;
 }
 
+export const getFeaturedProjectList = async (count = 4) => {
+  const projects = await getProjectList();
+  return projects.filter(project => project.frontmatter.isFeatured === true)
+    .slice(0, count).sort((a, b) => {
+    return a.frontmatter.prior - b.frontmatter.prior;
+  });
+}
+
 export const getProject = async (slug: string) => {
   const rawContent = await readFile(`/projects/${slug}.mdx`);
    const { data: frontmatter, content } = matter(rawContent);
@@ -30,6 +38,6 @@ const readDir = (dirPath: string) => {
   return fs.readdir(path.join(/*turbopackIgnore: true*/process.cwd(), dirPath));
 }
 
-const readFile = (filePath: string) => {
+export const readFile = (filePath: string) => {
   return fs.readFile(path.join(/*turbopackIgnore: true*/process.cwd(), filePath));
 }

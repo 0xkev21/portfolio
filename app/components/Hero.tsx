@@ -13,7 +13,6 @@ import {
 } from '@/lib/animation-settings';
 import { JetBrains_Mono } from 'next/font/google';
 import Link from 'next/link';
-import { useRef } from 'react';
 
 const JetBrainsMono = JetBrains_Mono({ subsets: ['latin'] });
 
@@ -84,6 +83,7 @@ const Hero = () => {
               vanilla JavaScript, you can actually{' '}
               <Link
                 href="https://0xkev.tech"
+                target="_blank"
                 className="text-(--color-primary) font-bold underline underline-offset-2"
               >
                 view my very first portfolio here

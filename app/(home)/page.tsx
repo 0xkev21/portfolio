@@ -2,6 +2,7 @@ import CertStories from '../components/CertStories';
 import Hero from '../components/Hero';
 import MaxWidthWrapper from '../components/MaxWidthWrapper';
 import MileStones from '../components/MileStones';
+import Projects from '../components/Projects';
 import ResumeForm from '../components/ResumeForm';
 import ResumeSection from '../components/ResumeSection';
 import Section from '../components/Section';
@@ -19,7 +20,7 @@ const HomePage = () => {
             description="A selection of things I've designed, built, and shipped."
             id="projects"
           >
-            Projects
+            <Projects />
           </Section>
           <div className="max-w-220 m-auto w-full">
             <Section

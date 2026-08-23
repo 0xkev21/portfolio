@@ -40,11 +40,11 @@ function Header() {
               setIsOpen(false);
             }}
           />
-          <div className="flex-1 flex justify-end">
+          {/* <div className="flex-1 flex justify-end">
             <button className="border-(--color-border) border p-2 rounded-lg">
               <Moon className="w-5 stroke-(--foreground)" />
             </button>
-          </div>
+          </div> */}
           <div className="md:hidden block">
             <button
               onClick={() => {

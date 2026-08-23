@@ -62,7 +62,7 @@ export const continuousLearning: ContinuousLearningCert[] = [
     id: "joy-of-react",
     title: "The Joy of React",
     issuer: "Josh Comeau",
-    imagePath: "/josh-joy-of-react.png",
+    imagePath: "/certs/josh-joy-of-react.png",
     focus: "Mastered deep React fundamentals, component lifecycles, and advanced hooks.",
     application: "Utilized strict state management to prevent unnecessary re-renders, resulting in highly interactive and performant frontend architectures in Next.js.",
      skills: [
@@ -76,7 +76,7 @@ export const continuousLearning: ContinuousLearningCert[] = [
   {
     id: "odin-project",
     title: "Foundations",
-    imagePath: "/odin-project-foundations.png",
+    imagePath: "/certs/odin-project-foundations.png",
     issuer: "The Odin Project",
     focus: "Building robust applications from scratch without relying on heavy frameworks.",
     application: "Solidified my ability to engineer web tools without hand-holding, focusing strictly on raw web technologies and best practices.",
@@ -90,7 +90,7 @@ export const continuousLearning: ContinuousLearningCert[] = [
   {
     id: "master-dev-node",
     title: "Node.js Introduction",
-    imagePath: "/master.dev-node-intro.png",
+    imagePath: "/certs/master.dev-node-intro.png",
     issuer: "master.dev",
     focus: "Deep dive into Node.js runtime mechanics, asynchronous non-blocking I/O, file system data persistence, and built-in HTTP server architecture.",
     application: "Architected a custom command-line (CLI) note-taking application from scratch, leveraging native File System APIs for persistent JSON storage, unit testing with Jest mocks, and serving formatted web views via raw HTTP servers.",
@@ -106,7 +106,7 @@ export const continuousLearning: ContinuousLearningCert[] = [
   {
     id: "boot-dev-linux",
     title: "Learn Linux",
-    imagePath: "/boot.dev-linux.png",
+    imagePath: "/certs/boot.dev-linux.png",
     issuer: "Boot.dev",
     focus: "Mastering Unix-like command-line interfaces, filesystem architecture, process management, and local environment configuration.",
     application: "Overhauled my local development workflow by managing software dependencies directly through package managers, strictly controlling file permissions.",
@@ -122,7 +122,7 @@ export const continuousLearning: ContinuousLearningCert[] = [
   {
     id: "fcc-js-algos",
     title: "JavaScript v7",
-    imagePath: "/fcc-javascript-v7.png",
+    imagePath: "/certs/fcc-javascript-v7.png",
     issuer: "freeCodeCamp",
     focus: "Programmatic problem solving, complex logic, and data structure manipulation.",
     application: "Built a strict foundation in writing clean, efficient JavaScript, allowing me to write highly optimized business logic for my frontend components.",
@@ -137,7 +137,7 @@ export const continuousLearning: ContinuousLearningCert[] = [
   {
     id: "fcc-responsive-web",
     title: "Responsive Web Design v8",
-    imagePath: "/fcc-web-design.png",
+    imagePath: "/certs/fcc-web-design.png",
     issuer: "freeCodeCamp",
     focus: "Modern CSS architecture, CSS Grid, Flexbox, and fluid typography.",
     application: "Ensured that all my full-stack projects adapt flawlessly across device sizes without relying solely on component libraries.",
@@ -152,7 +152,7 @@ export const continuousLearning: ContinuousLearningCert[] = [
   {
     id: "datacamp-github",
     title: "GitHub Foundations",
-    imagePath: "/datacamp-github-foundations.png",
+    imagePath: "/certs/datacamp-github-foundations.png",
     issuer: "DataCamp",
     focus: "Comprehensive version control, collaborative workflows, agile project management, and enterprise administration using Git and GitHub.",
     application: "Streamlined project collaboration by implementing secure development workflows, organizing tasks with GitHub Projects, and standardizing development environments via Codespaces.",

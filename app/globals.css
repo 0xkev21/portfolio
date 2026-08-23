@@ -1,14 +1,15 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 
 :root {
   --background: #fafafa;
   --foreground: #505050;
 
-  --color-primary: var(--color-blue-400);
+  --color-primary: var(--color-blue-500);
   --color-primary-subtle: var(--color-blue-100);
   --color-border: var(--color-mauve-200);
-
+  --color-success: var(--color-green-500);
+  --color-error: var(--color-red-500);
 }
 
 body {
