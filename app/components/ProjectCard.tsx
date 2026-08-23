@@ -30,6 +30,7 @@ const ProjectCard = ({
       initial={initial}
       whileInView={whileInView}
       transition={transition}
+      viewport={{ once: true }}
       className={`${index % 2 == 0 && 'col-span-2'} ${index % 3 == 0 && 'row-span-2'} last:row-start-2 last:col-start-3`}
     >
       <Link key={slug} href={`/${slug}`}>
