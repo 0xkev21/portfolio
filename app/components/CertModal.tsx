@@ -134,6 +134,7 @@ const CertModal = ({
                               href={link}
                               isLinkBtn={true}
                               type="primary"
+                              target="_blank"
                             >
                               <ArrowUp className="rotate-45" />
                               Check Certificate
@@ -144,6 +145,7 @@ const CertModal = ({
                               href={link}
                               isLinkBtn={true}
                               type="primary"
+                              target="_blank"
                             >
                               <GitHub />
                               Check Projects on GitHub
