@@ -1,10 +1,5 @@
 import { getFeaturedProjectList } from '@/lib/file-helpers';
-import { JetBrains_Mono } from 'next/font/google';
 import ProjectCard from './ProjectCard';
-
-const JetBrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-});
 
 const Projects = async () => {
   const projects = await getFeaturedProjectList();

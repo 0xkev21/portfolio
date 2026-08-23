@@ -1,5 +1,4 @@
 import { JetBrains_Mono } from 'next/font/google';
-import MaxWidthWrapper from './MaxWidthWrapper';
 
 const JetBrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains-mono',

@@ -1,5 +1,5 @@
 import { JetBrains_Mono } from 'next/font/google';
-import React, { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 
 interface InputProps extends ComponentPropsWithoutRef<'input'> {
   label: string;

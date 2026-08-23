@@ -6,12 +6,52 @@ import { JetBrains_Mono } from 'next/font/google';
 import { ArrowUp, GitHub } from 'react-feather';
 import Button from '../components/Button';
 import Image from 'next/image';
+import { Metadata, ResolvingMetadata } from 'next';
 
 export async function generateStaticParams() {
   const projects = await getProjectList();
   return projects.map((project) => ({
     slug: project.slug,
   }));
+}
+
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const { slug } = await params;
+  try {
+    const { frontmatter } = await getProject(slug);
+
+    const previousImages = (await parent).openGraph?.images || [];
+
+    return {
+      title: frontmatter.title,
+      description: frontmatter.description,
+      openGraph: {
+        title: frontmatter.title,
+        description: frontmatter.description,
+        type: 'article',
+        images: [frontmatter.imagePath, ...previousImages],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: frontmatter.title,
+        description: frontmatter.description,
+        images: [frontmatter.imagePath],
+      },
+    };
+  } catch (error) {
+    return {
+      title: 'Project Not Found',
+    };
+  }
 }
 
 const tailwindProses = `text-(--foreground)/90 
@@ -94,6 +134,7 @@ const ProjectPage = async ({ params }: { params: { slug: string } }) => {
                 href={frontmatter.github}
                 isLinkBtn
                 className="w-full"
+                target="_blank"
               >
                 <GitHub size={14} />
                 Source
@@ -106,6 +147,7 @@ const ProjectPage = async ({ params }: { params: { slug: string } }) => {
                 type="primary"
                 href={frontmatter.live}
                 className="w-full"
+                target="_blank"
               >
                 <ArrowUp size={14} className="rotate-45" />
                 View Live
