@@ -60,7 +60,7 @@ const ResumeForm = ({ ...delegated }) => {
     >
       <form
         action={handleSubmit}
-        className="flex flex-col gap-6 px-6 -mt-8 md:mt-12 py-8 border-2 border-(--color-border) rounded-xl"
+        className="flex flex-col gap-4 md:gap-6 px-3 md:px-6 -mt-8 md:mt-12 py-5 md:py-8 border-2 border-(--color-border) rounded-xl"
       >
         <Input
           type="text"
@@ -83,13 +83,11 @@ const ResumeForm = ({ ...delegated }) => {
             {state.message}
           </p>
         )}
-
         <Turnstile
           options={{ theme: 'light', size: 'flexible' }}
           siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
           onSuccess={(token) => setTurnstileToken(token)}
         />
-
         <Button disabled={isPending} className="flex-1" type="primary">
           <Send size={16} />
           {isPending ? 'Sending...' : 'Request Resume (Automated)'}
