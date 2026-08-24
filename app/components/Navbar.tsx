@@ -94,7 +94,7 @@ function Navbar({
                   `,
                   backgroundSize: '48px 48px, 48px 48px, 100% 100%, 100% 100%',
                 }}
-                className="fixed w-full h-full left-0 top-0 flex items-center justify-center bg-(--background)"
+                className="transition-colors duration-300 fixed w-full h-full left-0 top-0 flex items-center justify-center bg-(--background)"
               >
                 <motion.div
                   initial={{ clipPath: 'inset(0% 0% 100% 0%)' }}
