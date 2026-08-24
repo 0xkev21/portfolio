@@ -7,6 +7,8 @@ import MaxWidthWrapper from './MaxWidthWrapper';
 import Image from 'next/image';
 import Button from './Button';
 import { motion, AnimatePresence } from 'motion/react';
+import { getCertLikes, incrementLike } from '../actions/certReactions';
+import { useEffect, useRef, useState } from 'react';
 
 const CertModal = ({
   isOpen,
@@ -27,28 +29,80 @@ const CertModal = ({
     link = '',
   } = cert || {};
 
+  const [isLiking, setIsLiking] = useState(false);
+  const [likeCount, setLikeCount] = useState<number>();
+
+  const pendingLikes = useRef(0);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    if (isOpen && cert) {
+      const fetchLikes = async () => {
+        const count = (await getCertLikes(cert.id)) || 0;
+        setLikeCount(count);
+      };
+      fetchLikes();
+    }
+  }, [isOpen, cert]);
+
+  const handleLike = () => {
+    if (!cert) return;
+
+    setIsLiking(true);
+    setLikeCount((prev) => (prev ? prev + 1 : 0 + 1));
+
+    pendingLikes.current += 1;
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(async () => {
+      const likesToSend = pendingLikes.current;
+
+      if (likesToSend > 0) {
+        pendingLikes.current = 0;
+
+        await incrementLike(cert.id, likesToSend);
+      }
+    }, 500);
+
+    setTimeout(() => {
+      setIsLiking(false);
+    }, 1000);
+  };
+
+  const handleModalClose = () => {
+    handleClose();
+    setLikeCount(undefined);
+  };
+
   return (
     <Dialog.Root
       onOpenChange={(details) => {
         if (!details.open) {
-          handleClose();
+          handleModalClose();
         }
       }}
       open={isOpen}
-      onEscapeKeyDown={handleClose}
+      onEscapeKeyDown={handleModalClose}
       present={true}
     >
       <Portal>
         <AnimatePresence>
           {isOpen && cert && (
             <>
-              <Dialog.Backdrop onClick={handleClose} asChild key="backdrop">
+              <Dialog.Backdrop
+                onClick={handleModalClose}
+                asChild
+                key="backdrop"
+              >
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  onClick={handleClose}
+                  onClick={handleModalClose}
                   className="fixed z-2 w-full h-full top-0 left-0 bg-(--foreground)/20 backdrop-blur-sm"
                 />
               </Dialog.Backdrop>
@@ -69,7 +123,7 @@ const CertModal = ({
                           <span className="text-(--foreground)">{issuer}</span>
                         </Dialog.Title>
                         <button
-                          onClick={handleClose}
+                          onClick={handleModalClose}
                           className="p-2 border-(--color-border) border rounded-lg hover:bg-(--color-border)/50 transition-colors"
                         >
                           <X />
@@ -77,7 +131,7 @@ const CertModal = ({
                       </div>
 
                       <div className="space-y-6 flex flex-1 flex-col gap-2 overflow-y-auto scrollbar-thin scrollbar-thumb-(--color-primary-subtle)">
-                        <div className="shrink-0 w-full">
+                        <div className="shrink-0 w-full relative">
                           {imagePath && (
                             <Image
                               width={0}
@@ -88,6 +142,19 @@ const CertModal = ({
                               className="w-full h-auto"
                             />
                           )}
+                          <AnimatePresence>
+                            {isLiking && (
+                              <motion.div
+                                initial={{ opacity: 1, scale: 0.5, y: 0 }}
+                                animate={{ opacity: 0, scale: 1.5, y: -100 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.8, ease: 'easeOut' }}
+                                className="absolute inset-0 m-auto flex items-center justify-center pointer-events-none text-(--color-error)"
+                              >
+                                <Heart size={80} fill="currentColor" />
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </div>
                         <MaxWidthWrapper>
                           <div className="space-y-4 text-(--foreground)">
@@ -152,9 +219,18 @@ const CertModal = ({
                             </Button>
                           )}
                         </div>
-                        {/* <Button type="secondary" onClick={() => {}} >
-                          <Heart />
-                        </Button> */}
+                        <Button
+                          type="secondary"
+                          onClick={handleLike}
+                          className="flex items-center justify-center gap-2 px-4"
+                        >
+                          <Heart className="text-(--color-error) fill-(--color-error) scale-110 transition-transform" />
+                          {likeCount && likeCount > 0 && (
+                            <span className="font-semibold text-sm tabular-nums">
+                              {likeCount}
+                            </span>
+                          )}
+                        </Button>
                       </div>
                     </motion.div>
                   </Dialog.Content>
