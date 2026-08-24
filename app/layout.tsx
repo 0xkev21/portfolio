@@ -11,6 +11,7 @@ const IBMPlexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://hellokev.me'),
   icons: '/favicon.ico',
   title: { default: "Kev's Portfolio", template: '%s | Kev' },
   description:

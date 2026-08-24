@@ -111,6 +111,7 @@ const Hero = () => {
               alt="profile-picture"
               fill
               src="/profile.jpeg"
+              sizes="(max-width: 768px) 100vw 384px"
             />
           </motion.div>
         </motion.div>

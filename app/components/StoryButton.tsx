@@ -37,11 +37,12 @@ const StoryButton = (props: StoryButtonProps) => {
       onClick={handleClick}
       className="flex-1 md:w-28 w-24 flex-col items-center gap-2 cursor-pointer"
     >
-      <div className="relative border-2 border-(--color-primary) rounded-full overflow-clip w-24 aspect-square">
-        <motion.div layoutId={imagePath}>
+      <div className="border-2 border-(--color-primary) rounded-full overflow-clip w-24 aspect-square">
+        <motion.div className="relative w-full h-full" layoutId={imagePath}>
           <Image
             alt="test"
             src={imagePath}
+            sizes="96px"
             fill
             className="object-cover w-full h-full p-0.5 rounded-full"
           />
