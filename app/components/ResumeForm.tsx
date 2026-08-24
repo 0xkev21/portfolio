@@ -9,7 +9,7 @@ import {
   transition,
   viewport,
 } from '@/lib/animation-settings';
-import { useState, useTransition } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { sendResume } from '../actions/sendResume';
 import { Turnstile } from '@marsidev/react-turnstile';
 
@@ -26,6 +26,28 @@ const ResumeForm = ({ ...delegated }) => {
     result: 'idle',
   });
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [widgetTheme, setWidgetTheme] = useState<'light' | 'dark'>('light');
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setWidgetTheme(
+        document.documentElement.classList.contains('dark') ? 'dark' : 'light',
+      );
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(() => {
+      checkTheme();
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleSubmit = (formData: FormData) => {
     if (!turnstileToken) {
@@ -84,7 +106,7 @@ const ResumeForm = ({ ...delegated }) => {
           </p>
         )}
         <Turnstile
-          options={{ theme: 'light', size: 'flexible' }}
+          options={{ theme: widgetTheme, size: 'flexible' }}
           siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
           onSuccess={(token) => setTurnstileToken(token)}
         />

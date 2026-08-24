@@ -2,18 +2,41 @@
 @plugin "@tailwindcss/typography";
 
 :root {
+  /* LIGHT MODE */
   --background: #fafafa;
   --foreground: #505050;
 
   --color-primary: var(--color-blue-500);
   --color-primary-subtle: var(--color-blue-100);
+
   --color-border: var(--color-mauve-200);
+
   --color-success: var(--color-green-500);
   --color-error: var(--color-red-500);
+}
+
+.dark {
+  /* DARK MODE */
+  --background: #171717;
+  --foreground: #d4d4d4;
+
+  --color-primary: var(--color-blue-400);
+  --color-blue-950: oklch(19.409% 0.09445 262.641 / 0.3);
+  --color-primary-subtle: var(--color-blue-950);
+
+  --color-border: var(--color-neutral-800);
+
+  --color-success: var(--color-green-400);
+  --color-error: var(--color-red-400);
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-ibm-plex-sans);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
 }

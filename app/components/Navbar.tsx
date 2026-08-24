@@ -87,10 +87,10 @@ function Navbar({
                 asChild
                 style={{
                   backgroundImage: `
-                    linear-gradient(to right, rgba(234, 235, 236, 0.8) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(242, 242, 243, 0.8) 1px, transparent 1px),
-                    radial-gradient(circle 500px at 20% 100%, rgba(177, 149, 244, 0.3), transparent),
-                    radial-gradient(circle 500px at 100% 80%, rgba(156, 189, 241, 0.3), transparent)
+                    linear-gradient(to right, var(--color-border) 1px, transparent 1px),
+                    linear-gradient(to bottom, var(--color-border) 1px, transparent 1px),
+                    radial-gradient(circle 500px at 20% 100%, color-mix(in srgb, var(--color-primary) 15%, transparent), transparent),
+                    radial-gradient(circle 500px at 100% 80%, color-mix(in srgb, var(--color-primary) 15%, transparent), transparent)
                   `,
                   backgroundSize: '48px 48px, 48px 48px, 100% 100%, 100% 100%',
                 }}

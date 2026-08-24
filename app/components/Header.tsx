@@ -7,6 +7,7 @@ import { JetBrains_Mono } from 'next/font/google';
 import Navbar from './Navbar';
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import ThemeToggle from './ThemeToggle';
 
 const JetBrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains-mono',
@@ -40,11 +41,9 @@ function Header() {
               setIsOpen(false);
             }}
           />
-          {/* <div className="flex-1 flex justify-end">
-            <button className="border-(--color-border) border p-2 rounded-lg">
-              <Moon className="w-5 stroke-(--foreground)" />
-            </button>
-          </div> */}
+          <div className="flex-1 flex justify-end">
+            <ThemeToggle />
+          </div>
           <div className="md:hidden block">
             <button
               onClick={() => {
