@@ -16,6 +16,26 @@ const rateLimit = new Ratelimit({
 
 export async function sendResume(formData: FormData) {
   try {
+    const turnstileToken = formData.get('turnstileToken');
+    if(!turnstileToken) {
+      return {error: 'Security token missing.'};
+    }
+
+    const verifyResponse = await fetch(
+      'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `secret=${process.env.TURNSTILE_SECRET_KEY}&response=${turnstileToken}`,
+      }
+    )
+    const verification = await verifyResponse.json();
+    if(!verification.success) {
+      return {error: 'Security check failed. Are you a bot?'}
+    }
+
     const headerList = await headers();
     const ip = headerList.get('x-forwarded-for') ?? '127.0.0.1';
 

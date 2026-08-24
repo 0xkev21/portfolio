@@ -11,6 +11,7 @@ import {
 } from '@/lib/animation-settings';
 import { useState, useTransition } from 'react';
 import { sendResume } from '../actions/sendResume';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 const statusStyles = {
   error: 'bg-(--color-error)/10 border-(--color-error)',
@@ -24,8 +25,18 @@ const ResumeForm = ({ ...delegated }) => {
     message: '',
     result: 'idle',
   });
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const handleSubmit = (formData: FormData) => {
+    if (!turnstileToken) {
+      setState({
+        message: 'Please wait for the security check to complete',
+        result: 'error',
+      });
+      return;
+    }
+
+    formData.append('turnstileToken', turnstileToken);
     startTransition(async () => {
       const result = await sendResume(formData);
 
@@ -72,6 +83,13 @@ const ResumeForm = ({ ...delegated }) => {
             {state.message}
           </p>
         )}
+
+        <Turnstile
+          options={{ theme: 'light', size: 'flexible' }}
+          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+          onSuccess={(token) => setTurnstileToken(token)}
+        />
+
         <Button disabled={isPending} className="flex-1" type="primary">
           <Send size={16} />
           {isPending ? 'Sending...' : 'Request Resume (Automated)'}
