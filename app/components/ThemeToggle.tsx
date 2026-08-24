@@ -25,7 +25,7 @@ export default function ThemeToggle() {
     }
   };
 
-  if (!mounted) return <div className="w-5" />;
+  if (!mounted) return <div className="h-[41.6px] w-10" />;
 
   return (
     <button
