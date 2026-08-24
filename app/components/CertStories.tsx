@@ -11,11 +11,17 @@ import {
   whileInView,
 } from '@/lib/animation-settings';
 import { motion } from 'motion/react';
+import { markStoryAsSeen } from '../actions/markStory';
 
-const CertStories = () => {
+type Props = {
+  initialSeenStories: string[];
+};
+
+const CertStories = ({ initialSeenStories }: Props) => {
   const [selectedCert, setSelectedCert] =
     useState<ContinuousLearningCert | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [seenStories, setSeenStories] = useState<string[]>(initialSeenStories);
 
   useEffect(() => {
     const handlePopState = () => {
@@ -38,9 +44,13 @@ const CertStories = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const handleOpenModal = (cert: ContinuousLearningCert) => {
+  const handleOpenModal = async (cert: ContinuousLearningCert) => {
     setSelectedCert(cert);
     window.history.pushState({ modalOpen: true }, '');
+    if (!seenStories.includes(cert.id)) {
+      setSeenStories((prev) => [...prev, cert.id]);
+      await markStoryAsSeen(cert.id);
+    }
   };
 
   const closeModal = () => {
@@ -69,6 +79,7 @@ const CertStories = () => {
                 viewport={{ ...viewport, margin: '0px', amount: 0 }}
               >
                 <StoryButton
+                  isSeen={seenStories.includes(id)}
                   title={title}
                   issuer={issuer}
                   imagePath={imagePath}

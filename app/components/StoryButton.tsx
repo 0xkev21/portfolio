@@ -8,6 +8,7 @@ type ActiveStoryProps = {
   imagePath: string;
   isComing?: boolean;
   handleClick: () => void;
+  isSeen: boolean;
 };
 
 type ComingSoonProps = {
@@ -31,13 +32,15 @@ const StoryButton = (props: StoryButtonProps) => {
     );
   }
 
-  const { title, issuer, imagePath, handleClick } = props;
+  const { title, issuer, imagePath, handleClick, isSeen } = props;
   return (
     <button
       onClick={handleClick}
       className="flex-1 md:w-28 w-24 flex-col items-center gap-2 cursor-pointer"
     >
-      <div className="border-2 border-(--color-primary) rounded-full overflow-clip w-24 aspect-square">
+      <div
+        className={`border-2 ${isSeen ? 'border-(--color-border)' : 'border-(--color-primary)'} rounded-full overflow-clip w-24 aspect-square`}
+      >
         <motion.div className="relative w-full h-full" layoutId={imagePath}>
           <Image
             alt="test"
