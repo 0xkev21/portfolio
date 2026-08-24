@@ -1,4 +1,3 @@
-import { cookies } from 'next/headers';
 import CertStories from '../components/CertStories';
 import Hero from '../components/Hero';
 import MaxWidthWrapper from '../components/MaxWidthWrapper';
@@ -10,11 +9,6 @@ import Section from '../components/Section';
 import Skills from '../components/Skills';
 
 const HomePage = async () => {
-  const cookieStore = await cookies();
-  const cookieStoriesSeen = cookieStore.get('seen_certs')?.value;
-  const initialSeenStories = cookieStoriesSeen
-    ? JSON.parse(cookieStoriesSeen)
-    : [];
   return (
     <>
       <MaxWidthWrapper>
@@ -44,7 +38,7 @@ const HomePage = async () => {
             description="Self-paced deep dives. Tap a story to see exactly what was mastered."
             id="learning"
           >
-            <CertStories initialSeenStories={initialSeenStories} />
+            <CertStories />
           </Section>
           <Section
             sectionNumber="04"

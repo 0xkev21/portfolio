@@ -11,17 +11,23 @@ import {
   whileInView,
 } from '@/lib/animation-settings';
 import { motion } from 'motion/react';
-import { markStoryAsSeen } from '../actions/markStory';
 
-type Props = {
-  initialSeenStories: string[];
-};
-
-const CertStories = ({ initialSeenStories }: Props) => {
+const CertStories = () => {
   const [selectedCert, setSelectedCert] =
     useState<ContinuousLearningCert | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [seenStories, setSeenStories] = useState<string[]>(initialSeenStories);
+  const [seenStories, setSeenStories] = useState<string[]>([]);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('seen_certs');
+    if (stored) {
+      try {
+        setSeenStories(JSON.parse(stored));
+      } catch (error) {
+        console.error('Failed to parse seen certs', error);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     const handlePopState = () => {
@@ -48,8 +54,9 @@ const CertStories = ({ initialSeenStories }: Props) => {
     setSelectedCert(cert);
     window.history.pushState({ modalOpen: true }, '');
     if (!seenStories.includes(cert.id)) {
-      setSeenStories((prev) => [...prev, cert.id]);
-      await markStoryAsSeen(cert.id);
+      const newSeen = [...seenStories, cert.id];
+      setSeenStories(newSeen);
+      localStorage.setItem('seen_certs', JSON.stringify(newSeen));
     }
   };
 
