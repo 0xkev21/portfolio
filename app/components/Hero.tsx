@@ -25,7 +25,7 @@ const Hero = () => {
     });
   };
   return (
-    <div>
+    <div className="overflow-x-clip">
       <section
         id="about"
         className="flex flex-col md:flex-row py-[clamp(4rem,8vw,5rem)] min-h-[90vh] gap-8 md:items-center"

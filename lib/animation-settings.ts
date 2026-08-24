@@ -17,5 +17,5 @@ export const transition: Transition = {
 
 export const viewport: {once: boolean, margin: string} = {
   once: true,
-  margin: '-200px',
+  margin: '-50px',
 }

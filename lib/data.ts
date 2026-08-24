@@ -170,16 +170,15 @@ export const skills = [
   {
     category: 'frontend',
     skills: [
-      'JavaSript',
+      'JavaScript',
       'Tailwind',
-      'Typescript',
-      'Motion'
+      'React',
+      'Next.js',
     ]
   },
   {
     category: 'backend',
     skills: [
-      'Next.js',
       'REST APIs',
       'SQL',
       'Firebase',
