@@ -5,6 +5,7 @@ import ResumeEmail from '../components/ResumeEmail';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 import { headers } from 'next/headers';
+import { getStore } from '@netlify/blobs';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -56,13 +57,14 @@ export async function sendResume(formData: FormData) {
       return { error: 'Name and email are required' };
     }
 
-    const resumeUrl = process.env.RESUME_URL;
-    if (!resumeUrl) throw new Error('Resume URL not configured');
+    const blobStore = getStore('portfolio-assets');
 
-    const response = await fetch(resumeUrl);
-    if (!response.ok) throw new Error('Failed to fetch resume file');
-
-    const arrayBuffer = await response.arrayBuffer();
+    const arrayBuffer = await blobStore.get('kev_resume.pdf', {
+      type: 'arrayBuffer',
+    });
+    if (!arrayBuffer) {
+      throw new Error('Resume file not found in Netlify Blobs.');
+    }
     const pdfBuffer = Buffer.from(arrayBuffer);
 
     await resend.emails.send({
