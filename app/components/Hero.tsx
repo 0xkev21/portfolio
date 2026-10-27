@@ -82,7 +82,7 @@ const Hero = () => {
               I started my journey building static pages with raw HTML, CSS, and
               vanilla JavaScript, you can actually{' '}
               <Link
-                href="https://0xkev.tech"
+                href="https://my-demo-portfolio-woad.vercel.app"
                 target="_blank"
                 className="text-(--color-primary) font-bold underline underline-offset-2"
               >
