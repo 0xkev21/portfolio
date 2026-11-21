@@ -4,6 +4,7 @@ import './globals.css';
 import { MotionConfig } from 'motion/react';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import { Analytics } from '@vercel/analytics/next';
 
 const IBMPlexSans = IBM_Plex_Sans({
   variable: '--font-ibm-plex-sans',
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         <MotionConfig reducedMotion="user">
           <Header />
           <div className="mt-12">{children}</div>
+          <Analytics />
           <Footer />
         </MotionConfig>
       </body>
